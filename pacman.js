@@ -4,9 +4,45 @@ var lives = 2;
 
 
 // Define your ghosts here
+// inky
 
-// replace this comment with your four ghosts setup as objects
+var inky = {
+  menu_option: '1',
+  name: 'Inky',
+  colour: 'Red',
+  character: 'Shadow',
+  edible: false
+};
 
+// blinky
+
+var blinky = {
+  menu_option: '2',
+  name: 'Blnky',
+  colour: 'cyan',
+  character: 'Speedy',
+  edible: false
+};
+
+// Pinky
+
+var inky = {
+  menu_option: '3',
+  name: 'Pinky',
+  colour: 'Pink',
+  character: 'Bashful',
+  edible: false
+};
+
+// Clyde
+
+var clyde = {
+  menu_option: '4',
+  name: 'Clyde',
+  colour: 'Orange',
+  character: 'Pokey',
+  edible: false
+};
 
 // Draw the screen functionality
 function drawScreen() {
@@ -85,44 +121,3 @@ stdin.on('data', function(key) {
 process.on('exit', function() {
   console.log('\n\nGame Over!\n');
 });
-
-// ghosts
-// inky
-
-var inky = {
-  menu_option: '1',
-  name: 'Inky',
-  colour: 'Red',
-  character: 'Shadow',
-  edible: false
-};
-
-// blinky
-
-var blinky = {
-  menu_option: '2',
-  name: 'Blnky',
-  colour: 'cyan',
-  character: 'Speedy',
-  edible: false
-};
-
-// Pinky
-
-var inky = {
-  menu_option: '3',
-  name: 'Pinky',
-  colour: 'Pink',
-  character: 'Bashful',
-  edible: false
-};
-
-// inky
-
-var clyde = {
-  menu_option: '4',
-  name: 'Clyde',
-  colour: 'Orange',
-  character: 'Pokey',
-  edible: false
-};
