@@ -44,6 +44,9 @@ var clyde = {
   edible: false
 };
 
+// ghost array
+var ghost = ['inky', 'blinky', 'pinky', 'clyde']
+
 // Draw the screen functionality
 function drawScreen() {
   clearScreen();
@@ -66,6 +69,10 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(q) Quit');
+  console.log('(1)Eat Inky');
+  console.log('(2)Eat Blinky');
+  console.log('(3)Eat Pinky');
+  console.log('(4)Eat Clyde');
 }
 
 function displayPrompt() {
@@ -80,6 +87,10 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost() {
+  console.log('\nChomp!');
+  score += 10;
+}
 
 // Process Player's Input
 function processInput(key) {
@@ -90,6 +101,22 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost();
+      console.log('You ate Inky')
+      break;
+    case'2':
+      eatGhost();
+      console.log('You ate Blinky')
+      break;
+    case '3':
+      eatGhost();
+      console.log('You ate Pinky')
+      break;
+    case '4':
+      eatGhost();
+      console.log('You ate Clyde')
       break;
     default:
       console.log('\nInvalid Command!');
