@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellets = 4;
 
 
 // Define your ghosts here
@@ -26,7 +27,7 @@ var blinky = {
 
 // Pinky
 
-var inky = {
+var pinky = {
   menu_option: '3',
   name: 'Pinky',
   colour: 'Pink',
@@ -45,13 +46,14 @@ var clyde = {
 };
 
 // ghost array
-var ghost = ['inky', 'blinky', 'pinky', 'clyde']
+ghosts = [inky, blinky, pinky, clyde]
 
 // Draw the screen functionality
 function drawScreen() {
   clearScreen();
   setTimeout(function() {
     displayStats();
+    displayPowerPellets();
     displayMenu();
     displayPrompt();
   }, 10);
@@ -65,14 +67,20 @@ function displayStats() {
   console.log('Score: ' + score + '     Lives: ' + lives);
 }
 
+function displayPowerPellets() {
+  console.log('\nPower-Pellets: ' + powerPellets)
+}
+
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(q) Quit');
-  console.log('(1)Eat Inky');
-  console.log('(2)Eat Blinky');
-  console.log('(3)Eat Pinky');
-  console.log('(4)Eat Clyde');
+  if (powerPellets > 0) {
+    console.log('(p) Eat Power-Pellet');
+  }
+  for (var i = 0; i < ghosts.length; i++) {
+    console.log('(' + (i+1) + ') ' + 'Eat ' + ghosts[i].name)
+  }
 }
 
 function displayPrompt() {
@@ -87,10 +95,34 @@ function eatDot() {
   score += 10;
 }
 
-function eatGhost() {
-  console.log('\nChomp!');
-  score += 10;
+function eatGhost(key) {
+  if (ghosts[key-1]) {
+    if (ghosts[key-1].edible === false) {
+      lives -= 1;
+      console.log('\n' + ghosts[key-1].name + ' that has the colour ' + ghosts[key-1].colour + ' is not edible!');
+    } else {
+      score += 200;
+      console.log('\nPac-Man ate ' + ghosts[key-1].name + ' and has become ' + ghosts[key-1].character + '!')
+      ghosts[key-1].edible = false;
+    }
+  }
 }
+
+function checkGameOver() {
+  if (lives < 0) {
+    console.log('Pac-Man has no more lives');
+    process.exit();
+  }
+}
+
+function eatPowerPellet() {
+  score += 50;
+  for (var i = 0; i < ghosts.length; i++) {
+    ghosts[i].edible = true;
+  }
+  powerPellets -= 1;
+}
+
 
 // Process Player's Input
 function processInput(key) {
